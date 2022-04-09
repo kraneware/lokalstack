@@ -1,4 +1,4 @@
-package main
+package lokalstack
 
 import (
 	"archive/zip"
@@ -6,7 +6,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/aws/aws-sdk-go/service/apigateway"
-	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/sns"
 	"github.com/aws/aws-sdk-go/service/sqs"
@@ -16,7 +15,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/lambda"
-	"github.com/kraneware/core-go/awsutil/services"
+	"github.com/kraneware/kws/services"
 )
 
 // NewKeySchema creates a new array of KeySchemaElement for DynamoDB table creation
@@ -259,49 +258,49 @@ func NewSNSTopic(
 	return
 }
 
-func NewEC2Instance(ctx context.Context, endpoint string) (res *ec2.Reservation, err error) {
+func NewEC2Instance(ctx context.Context, endpoint string) error {
 	fmt.Println("  - Creating " + endpoint + " ec2 instance for testing")
+	//
+	//res, err = services.EC2Client().RunInstancesWithContext(ctx, &ec2.RunInstancesInput{
+	//	AdditionalInfo:                    nil,
+	//	BlockDeviceMappings:               nil,
+	//	CapacityReservationSpecification:  nil,
+	//	ClientToken:                       nil,
+	//	CpuOptions:                        nil,
+	//	CreditSpecification:               nil,
+	//	DisableApiTermination:             nil,
+	//	DryRun:                            nil,
+	//	EbsOptimized:                      nil,
+	//	ElasticGpuSpecification:           nil,
+	//	ElasticInferenceAccelerators:      nil,
+	//	EnclaveOptions:                    nil,
+	//	HibernationOptions:                nil,
+	//	IamInstanceProfile:                nil,
+	//	ImageId:                           nil,
+	//	InstanceInitiatedShutdownBehavior: nil,
+	//	InstanceMarketOptions:             nil,
+	//	InstanceType:                      aws.String("t2.medium"),
+	//	Ipv6AddressCount:                  nil,
+	//	Ipv6Addresses:                     nil,
+	//	KernelId:                          nil,
+	//	KeyName:                           nil,
+	//	LaunchTemplate:                    nil,
+	//	LicenseSpecifications:             nil,
+	//	MaxCount:                          aws.Int64(1),
+	//	MetadataOptions:                   nil,
+	//	MinCount:                          aws.Int64(1),
+	//	Monitoring:                        nil,
+	//	NetworkInterfaces:                 nil,
+	//	Placement:                         nil,
+	//	PrivateDnsNameOptions:             nil,
+	//	PrivateIpAddress:                  nil,
+	//	RamdiskId:                         nil,
+	//	SecurityGroupIds:                  nil,
+	//	SecurityGroups:                    nil,
+	//	SubnetId:                          nil,
+	//	TagSpecifications:                 nil,
+	//	UserData:                          nil,
+	//})
 
-	res, err = services.EC2Client().RunInstancesWithContext(ctx, &ec2.RunInstancesInput{
-		AdditionalInfo:                    nil,
-		BlockDeviceMappings:               nil,
-		CapacityReservationSpecification:  nil,
-		ClientToken:                       nil,
-		CpuOptions:                        nil,
-		CreditSpecification:               nil,
-		DisableApiTermination:             nil,
-		DryRun:                            nil,
-		EbsOptimized:                      nil,
-		ElasticGpuSpecification:           nil,
-		ElasticInferenceAccelerators:      nil,
-		EnclaveOptions:                    nil,
-		HibernationOptions:                nil,
-		IamInstanceProfile:                nil,
-		ImageId:                           nil,
-		InstanceInitiatedShutdownBehavior: nil,
-		InstanceMarketOptions:             nil,
-		InstanceType:                      aws.String("t2.medium"),
-		Ipv6AddressCount:                  nil,
-		Ipv6Addresses:                     nil,
-		KernelId:                          nil,
-		KeyName:                           nil,
-		LaunchTemplate:                    nil,
-		LicenseSpecifications:             nil,
-		MaxCount:                          aws.Int64(1),
-		MetadataOptions:                   nil,
-		MinCount:                          aws.Int64(1),
-		Monitoring:                        nil,
-		NetworkInterfaces:                 nil,
-		Placement:                         nil,
-		PrivateDnsNameOptions:             nil,
-		PrivateIpAddress:                  nil,
-		RamdiskId:                         nil,
-		SecurityGroupIds:                  nil,
-		SecurityGroups:                    nil,
-		SubnetId:                          nil,
-		TagSpecifications:                 nil,
-		UserData:                          nil,
-	})
-
-	return res, err
+	return nil
 }
