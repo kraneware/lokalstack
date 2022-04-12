@@ -2,12 +2,11 @@ module github.com/kraneware/lokalstack
 
 go 1.17
 
-replace github.com/kraneware/kore-go => ../kore-go
+replace github.com/kraneware/kws => ../kws
 
 require (
 	github.com/aws/aws-sdk-go v1.43.36
 	github.com/aws/aws-xray-sdk-go v1.6.0
-	github.com/kraneware/core-go v0.1.0
 	github.com/kraneware/kws v0.0.0-20220409052145-a5e1f311bf31
 	github.com/onsi/ginkgo v1.16.5
 	github.com/onsi/gomega v1.19.0

@@ -7,7 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/lambda"
-	"github.com/kraneware/core-go/awsutil/services"
+	"github.com/kraneware/kws/services"
 	. "github.com/kraneware/lokalstack"
 
 	. "github.com/onsi/ginkgo"
