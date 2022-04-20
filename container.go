@@ -31,7 +31,6 @@ var resource *dockertest.Resource // nolint:gochecknoglobals
 var resourcePool *dockertest.Pool // nolint:gochecknoglobals
 
 const (
-	// GenericEmptyLambda is the name of the testing lambda for the sake of routing
 	GenericEmptyLambda = "generic_empty_lambda"
 	TestRegion         = endpoints.UsEast1RegionID
 )
@@ -39,7 +38,7 @@ const (
 func xrayInit() (err error) { // nolint:gochecknoinits
 	if config.Endpoints.XRay != "" {
 		fmt.Println("Configuring test xray context missing strategy")
-		cms := &services.TestContextMissingStrategy{}
+		cms := &TestContextMissingStrategy{}
 		err = xray.Configure(xray.Config{ContextMissingStrategy: cms})
 	}
 	return
@@ -82,7 +81,7 @@ func checkContainerReady() (err error) {
 	fmt.Println(fmt.Sprintf("Checking if container is ready with aws region: %s ...", config.Region))
 	err = xrayInit()
 	if err == nil {
-		testCtx, td := services.NewTestDaemon()
+		testCtx, td := NewTestDaemon()
 		defer td.Close()
 
 		fmt.Println("Initialized test xray")
@@ -114,16 +113,17 @@ func checkContainerReady() (err error) {
 	return err
 }
 
-// CreatePortBindings converts port numbers to bindings
-func CreatePortBindings(ports ...string) (res map[dc.Port][]dc.PortBinding) {
+// createPortBindings converts port numbers to bindings
+func createPortBindings(ports ...string) (res map[dc.Port][]dc.PortBinding) {
 	res = map[dc.Port][]dc.PortBinding{}
 	for _, port := range ports {
 		res[dc.Port(port+"/tcp")] = []dc.PortBinding{{HostIP: "localhost", HostPort: port}}
 	}
 	return
 }
+
 func DefaultPortBindings() (res map[dc.Port][]dc.PortBinding) {
-	res = CreatePortBindings(
+	res = createPortBindings(
 		"4566", // Universal port
 		"4572", // S3
 		"4569", // Dynamodb
@@ -230,7 +230,7 @@ func StopContainer() (err error) {
 }
 
 func createGenericLambda() error {
-	testCtx, td := services.NewTestDaemon()
+	testCtx, td := NewTestDaemon()
 	defer td.Close()
 	return NewLambda(testCtx, GenericEmptyLambda, "return {}")
 }
