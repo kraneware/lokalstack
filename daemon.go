@@ -18,7 +18,7 @@ import (
 	"github.com/aws/aws-xray-sdk-go/xray"
 )
 
-// https://github.com/aws/aws-xray-sdk-go/blob/v1.0.0/xray/util_test.go
+// NewTestDaemon https://github.com/aws/aws-xray-sdk-go/blob/v1.0.0/xray/util_test.go
 func NewTestDaemon() (ctx context.Context, d *TestDaemon) {
 	c := make(chan *result, 200)
 	var (

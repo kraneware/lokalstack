@@ -31,7 +31,7 @@ var _ = AfterSuite(func() {
 var _ = Describe("AWS Testing Services", func() {
 	Context("Functions Test", func() {
 		It("should create test DynamoDB using support functions", func() {
-			testCtx, td := services.NewTestDaemon()
+			testCtx, td := NewTestDaemon()
 			defer td.Close()
 
 			err := NewTable(
@@ -54,7 +54,7 @@ var _ = Describe("AWS Testing Services", func() {
 			Expect(err).Should(BeNil())
 		})
 		It("should add TTL to the test table", func() {
-			testCtx, td := services.NewTestDaemon()
+			testCtx, td := NewTestDaemon()
 			defer td.Close()
 			Expect(AddTTL(testCtx, "testTable", "ttl")).Should(BeNil())
 
@@ -68,7 +68,7 @@ var _ = Describe("AWS Testing Services", func() {
 			Expect(*output.TimeToLiveDescription.AttributeName).Should(Equal("ttl"))
 		})
 		It("should create test DynamoDB using support functions with TTL", func() {
-			testCtx, td := services.NewTestDaemon()
+			testCtx, td := NewTestDaemon()
 			defer td.Close()
 			err := NewTable(
 				testCtx,
@@ -102,7 +102,7 @@ var _ = Describe("AWS Testing Services", func() {
 			Expect(*output.TimeToLiveDescription.AttributeName).Should(Equal("ttl"))
 		})
 		It("should create a lambda with Python code", func() {
-			testCtx, td := services.NewTestDaemon()
+			testCtx, td := NewTestDaemon()
 			defer td.Close()
 			Expect(NewLambda(testCtx, "myFunction", "return {}")).Should(BeNil())
 
@@ -116,12 +116,12 @@ var _ = Describe("AWS Testing Services", func() {
 			Expect(*output.Configuration.Runtime).Should(Equal("python3.6"))
 		})
 		It("should create a test S3 bucket", func() {
-			testCtx, td := services.NewTestDaemon()
+			testCtx, td := NewTestDaemon()
 			defer td.Close()
 			Expect(NewS3Bucket(testCtx, "testBucket")).Should(BeNil())
 		})
 		It("should create new sqs queue", func() {
-			testCtx, td := services.NewTestDaemon()
+			testCtx, td := NewTestDaemon()
 			defer td.Close()
 
 			attributes := map[string]*string{
@@ -134,7 +134,7 @@ var _ = Describe("AWS Testing Services", func() {
 			Expect(output).ShouldNot(BeNil())
 		})
 		It("should create new sns topic", func() {
-			testCtx, td := services.NewTestDaemon()
+			testCtx, td := NewTestDaemon()
 			defer td.Close()
 
 			var attributes map[string]*string

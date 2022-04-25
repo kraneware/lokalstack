@@ -5,8 +5,10 @@ go 1.17
 replace github.com/kraneware/kws => ../kws
 
 require (
+	github.com/aws/aws-lambda-go v1.29.0
 	github.com/aws/aws-sdk-go v1.43.36
 	github.com/aws/aws-xray-sdk-go v1.6.0
+	github.com/google/uuid v1.3.0
 	github.com/kraneware/kws v0.0.0-20220409052145-a5e1f311bf31
 	github.com/onsi/ginkgo v1.16.5
 	github.com/onsi/gomega v1.19.0
@@ -20,14 +22,13 @@ require (
 	github.com/Microsoft/go-winio v0.5.1 // indirect
 	github.com/Nvveen/Gotty v0.0.0-20120604004816-cd527374f1e5 // indirect
 	github.com/andybalholm/brotli v1.0.1 // indirect
-	github.com/aws/aws-lambda-go v1.29.0 // indirect
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
 	github.com/containerd/continuity v0.2.1 // indirect
 	github.com/docker/go-connections v0.4.0 // indirect
 	github.com/docker/go-units v0.4.0 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/google/uuid v1.3.0 // indirect
+	github.com/gotestyourself/gotestyourself v2.2.0+incompatible // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/klauspost/compress v1.11.8 // indirect
 	github.com/lib/pq v1.10.5 // indirect
@@ -46,4 +47,5 @@ require (
 	google.golang.org/protobuf v1.26.0 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gotest.tools v2.2.0+incompatible // indirect
 )
